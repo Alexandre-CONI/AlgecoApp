@@ -10,7 +10,7 @@ export class GetDeviceDataRequest extends AbstractRequest {
 
             })
             .catch(error => {
-
+                
             });
     }
 }

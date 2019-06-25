@@ -23,14 +23,15 @@ export class LoginPage extends abstractPage implements OnInit {
   }
 
   login(form): void {
-    this.loginService.login(form.value)
-      .then(data => {
-        this.router.navigateByUrl('devices-list');
-        this.Toast("Welcome",ToastType.SUCCESS);
-      })
-      .catch(error => {
-        this.Toast("Your information are incorrect", ToastType.DANGER);
-    });
+    this.LoadingSpinner().then(() => {
+      this.loginService.login(form.value)
+        .then(data => {
+          this.router.navigateByUrl('devices-list');
+          this.Toast("Welcome",ToastType.SUCCESS);
+        })
+        .catch(error => {
+          this.Toast("Your information are incorrect", ToastType.DANGER);
+      });
+    })
   }
-
 }

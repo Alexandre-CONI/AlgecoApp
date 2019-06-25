@@ -18,13 +18,15 @@ export class DevicesListPage extends abstractPage implements OnInit {
   { super(toastController,loadingController) }
 
   ngOnInit() {
-    this.devicesListService.getDevicesList()
-      .then(data =>{
-        
-      })
-      .catch(error =>{
-        this.Toast("The server seems busy, try again later", ToastType.DANGER);
-      })
+    this.LoadingSpinner().then(() => {
+      this.devicesListService.getDevicesList()
+        .then(data =>{
+          
+        })
+        .catch(error =>{
+          this.Toast("The server seems busy, try again later", ToastType.DANGER);
+        })
+    })
   }
   
 
