@@ -21,7 +21,7 @@ export class DeviceDataPage extends abstractPage implements OnInit {
     this.LoadingSpinner().then(() => {
       this.deviceDataService.getDeviceData()
       .then(data => {
-
+        return;
       })
       .catch(error => {
         this.Toast("The server seems busy, please try again later", ToastType.DANGER);
