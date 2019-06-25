@@ -19,13 +19,14 @@ export class DevicesListPage extends abstractPage implements OnInit {
 
   ngOnInit() {
     this.devicesListService.getDevicesList()
-    .then(data =>{
-      if (!data) Promise.reject(data);
-    })
-    .catch(error =>{
-
-    })
+      .then(data =>{
+        
+      })
+      .catch(error =>{
+        this.Toast("The server seems busy, try again later", ToastType.DANGER);
+      })
   }
+  
 
   onClickDevice(deviceID){
     this.router.navigateByUrl('device-data/' + deviceID);

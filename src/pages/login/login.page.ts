@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/services/login/login.service';
 import { Router } from '@angular/router';
-import { abstractPage } from '../abstractPage';
+import { abstractPage, ToastType } from '../abstractPage';
 import { ToastController, LoadingController } from '@ionic/angular';
 
 
@@ -26,9 +26,10 @@ export class LoginPage extends abstractPage implements OnInit {
     this.loginService.login(form.value)
       .then(data => {
         this.router.navigateByUrl('devices-list');
+        this.Toast("Welcome",ToastType.SUCCESS);
       })
       .catch(error => {
-
+        this.Toast("Your information are incorrect", ToastType.DANGER);
     });
   }
 
