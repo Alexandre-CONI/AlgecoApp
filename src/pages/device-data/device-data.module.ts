@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -10,7 +11,7 @@ import { DeviceDataPage } from './device-data.page';
 const routes: Routes = [
   {
     path: '',
-    component: DeviceDataPage
+    component: DeviceDataPage,
   }
 ];
 
@@ -19,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgxEchartsModule
   ],
   declarations: [DeviceDataPage]
 })

@@ -1,6 +1,13 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'
+})
+
 export class Metrics{
     constructor(
-        public value?: number
+        public value?: number,
+        public date?: Date
     ){}
 
     public static mapperMetrics(mMetrics: any): Metrics{
@@ -8,6 +15,7 @@ export class Metrics{
 
         metrics = new Metrics (
             mMetrics.value,
+            new Date(mMetrics.date)
         );
         return metrics;
     }

@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Devices list</ion-title>
+    <ion-buttons (click)="logOut()" slot="end">
+      <ion-icon name="log-out"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
@@ -10,7 +14,7 @@
       <ion-item>
         <ion-grid>
           <ion-row>
-            <ion-col size="8" (click)="onClickDevice(device.deviceID)">
+            <ion-col size="8" (click)="onClickDevice(device)">
               <ion-row>
                 <ion-col size="12">Identification : {{device?.deviceID}}</ion-col>
                 <ion-col size="12">Name : {{device?.name}}</ion-col>
@@ -25,6 +29,6 @@
       </ion-item>
     </ion-card>
   </div>
-  <ng-template #no_data_found>whalla y a rien</ng-template>
+  <ng-template #no_data_found>No data found</ng-template>
 </ion-content>
 

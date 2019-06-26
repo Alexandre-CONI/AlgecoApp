@@ -1,9 +1,60 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Device data</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+  <ion-card slot="fixed">
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-row>
+              <ion-col size="12">Identification : {{device?.deviceID}}</ion-col>
+              <ion-col size="12">Name : {{device?.name}}</ion-col>
+              <ion-col size="12">Type : {{device?.type}}</ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-card>
+
 <ion-content>
+  <div *ngIf="true; else no_data_found" >
+    <div *ngIf="graphDisplayed; else graph">
+      <div class="overflow: scroll;">
+        <ion-list *ngFor="let rawMetric of rawMetrics">
+          <ion-item>
+            <ion-label>Date : <span>{{rawMetric.date}}</span></ion-label>
+            <ion-label>Value : <span>{{rawMetric.value}}</span></ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+    <ng-template #graph>
+      <div echarts [options]="options"></div>
+    </ng-template>
+  </div>
+  <ng-template #no_data_found>No data found</ng-template>
+
+
 
 </ion-content>
+
+
+    <ion-tab-bar>
+      <ion-tab-button (click)="graphDisplayed = true" >
+        <ion-label>Raw metrics</ion-label>
+        <ion-icon name="logo-buffer"></ion-icon>
+      </ion-tab-button>
+  
+      <ion-tab-button (click)="graphDisplayed = false">
+        <ion-label>Graph</ion-label>
+        <ion-icon name="stats"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>

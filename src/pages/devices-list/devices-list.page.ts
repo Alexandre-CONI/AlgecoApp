@@ -18,39 +18,13 @@ export class DevicesListPage extends abstractPage implements OnInit {
               private devicesListService: DevicesListService)
   { super(toastController,loadingController) }
 
-  public devicesList: Array<Device> = [
-    {
-      "deviceID": "PORIT687",
-      "name": "Banana farm bright sensor",
-      "type" : DeviceType.BRIGHT
-    }, {
-      "deviceID": "PORIT688r",
-      "name": "Banana farm humidity sensor",
-      "type": DeviceType.HUMIDITY
-    },{
-      "deviceID": "PORIT689",
-      "name": "Ape sound level",
-      "type": DeviceType.SOUND_LEVEL
-    }, {
-      "deviceID": "PORIT690r",
-      "name": "Ape CO2",
-      "type": DeviceType.CO2
-    }, {
-      "deviceID": "PORIT691r",
-      "name": "Ape pressure",
-      "type": DeviceType.PRESSURE
-    }, {
-      "deviceID": "PORIT692",
-      "name": "Ape temperature",
-      "type": DeviceType.TEMPERATURE
-    }
-  ];
+  devicesList: Array<Device>;
 
   ngOnInit() {
     this.LoadingSpinner().then(() => {
       this.devicesListService.getDevicesList()
         .then(data => {
-          //this.devicesList = data;
+          this.devicesList = data;
         })
         .catch(error =>{
           this.Toast("The server seems busy, try again later", ToastType.DANGER);
@@ -59,8 +33,10 @@ export class DevicesListPage extends abstractPage implements OnInit {
   }
   
 
-  onClickDevice(deviceID){
-    this.router.navigateByUrl('device-data/' + deviceID);
+  onClickDevice(device : Device){
+    this.router.navigate(['device-data/'], {
+      queryParams: device,
+    });
   }
 
   onClickDeviceAction(deviceID){
@@ -71,6 +47,10 @@ export class DevicesListPage extends abstractPage implements OnInit {
       .catch(error => {
         this.Toast("Command didn't work", ToastType.DANGER);
       });
+  }
+
+  logOut(){
+    this.router.navigateByUrl('login');
   }
 
 }

@@ -1,10 +1,15 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'
+})
 
 export class Device {
     constructor(
-        public deviceID?: String,
-        public name?: String,
+        public deviceID?: string,
+        public name?: string,
         public type?: DeviceType
-    ) { }
+    ) {}
 
     public static mapperDevice(mDevice: any): Device {
         let device: Device = null;
