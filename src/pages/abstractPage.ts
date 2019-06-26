@@ -9,19 +9,26 @@ export class abstractPage  {
 
     async Toast(message: string, toastType: ToastType) {
         const toast = await this.toastController.create({
-            message: message,
-            duration: 2000,
-            color : toastType
+            message: message,            
+            color : toastType,
+            buttons: [
+                {
+                    text: 'Close',
+                    role: 'cancel',
+                }
+            ]
         });
         toast.present();
     }
 
     async LoadingSpinner() {
         const loading = await this.loadingController.create({
-            spinner: null,
-            message: 'Please wait...',
+            spinner: "circles"
         });
-        return await loading.present();
+        loading.dismiss();
+        return await loading.present()
+            .then(() => {loading.dismiss();})
+        
     }
 }
 

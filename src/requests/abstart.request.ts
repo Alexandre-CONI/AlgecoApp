@@ -1,12 +1,17 @@
 import { HTTP } from '@ionic-native/http/ngx';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'
+})
 
 export class AbstractRequest {
+    http: HTTP;
+    constructor() {
+        this.http = new HTTP();
+     }
 
-    private http: HTTP;
-
-    constructor() { }
-
-    protected callServer(): Promise<any> {
+    public callServer(): Promise<any> {    
        return this.http.get('http://ionic.io', {}, {})
             .then(data => {
 

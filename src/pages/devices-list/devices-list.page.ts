@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DevicesListService } from 'src/services/devicesList/devices-list.service';
 import { abstractPage, ToastType } from '../abstractPage';
 import { ToastController, LoadingController } from '@ionic/angular';
+import { Device, DeviceType } from 'src/models/device.model';
 
 @Component({
   selector: 'app-devices-list',
@@ -17,11 +18,39 @@ export class DevicesListPage extends abstractPage implements OnInit {
               private devicesListService: DevicesListService)
   { super(toastController,loadingController) }
 
+  public devicesList: Array<Device> = [
+    {
+      "deviceID": "PORIT687",
+      "name": "Banana farm bright sensor",
+      "type" : DeviceType.BRIGHT
+    }, {
+      "deviceID": "PORIT688r",
+      "name": "Banana farm humidity sensor",
+      "type": DeviceType.HUMIDITY
+    },{
+      "deviceID": "PORIT689",
+      "name": "Ape sound level",
+      "type": DeviceType.SOUND_LEVEL
+    }, {
+      "deviceID": "PORIT690r",
+      "name": "Ape CO2",
+      "type": DeviceType.CO2
+    }, {
+      "deviceID": "PORIT691r",
+      "name": "Ape pressure",
+      "type": DeviceType.PRESSURE
+    }, {
+      "deviceID": "PORIT692",
+      "name": "Ape temperature",
+      "type": DeviceType.TEMPERATURE
+    }
+  ];
+
   ngOnInit() {
     this.LoadingSpinner().then(() => {
       this.devicesListService.getDevicesList()
-        .then(data =>{
-          
+        .then(data => {
+          //this.devicesList = data;
         })
         .catch(error =>{
           this.Toast("The server seems busy, try again later", ToastType.DANGER);
@@ -34,7 +63,7 @@ export class DevicesListPage extends abstractPage implements OnInit {
     this.router.navigateByUrl('device-data/' + deviceID);
   }
 
-  onClickDeviceAction(){
+  onClickDeviceAction(deviceID){
     this.devicesListService.sendCommand()
       .then(data => {
         this.Toast("Command work", ToastType.SUCCESS);

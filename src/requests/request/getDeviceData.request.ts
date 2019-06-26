@@ -1,4 +1,9 @@
+import { Injectable } from '@angular/core';
 import { AbstractRequest } from '../abstart.request';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 export class GetDeviceDataRequest extends AbstractRequest {
 
@@ -10,7 +15,7 @@ export class GetDeviceDataRequest extends AbstractRequest {
 
             })
             .catch(error => {
-                
+
             });
     }
 }
