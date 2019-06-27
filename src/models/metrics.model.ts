@@ -15,7 +15,7 @@ export class Metrics{
 
         metrics = new Metrics (
             mMetrics.Value,
-            new Date(mMetrics.Date)
+            mMetrics.Date
         );
         return metrics;
     }

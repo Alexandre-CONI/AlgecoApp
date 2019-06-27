@@ -69,7 +69,7 @@ export class DeviceDataPage extends abstractPage implements OnInit {
 
     this.LoadingSpinner().then(() => {
       this.deviceDataService.getDeviceData(this.device.ID)
-        .then((metrics: Array<Metrics>) => {          
+        .then((metrics: Array<Metrics>) => {
           metrics.forEach(metric => {
             
             this.dataDate.push(metric.date);

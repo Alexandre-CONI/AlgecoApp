@@ -11,6 +11,7 @@ export class abstractPage  {
         const toast = await this.toastController.create({
             message: message,            
             color : toastType,
+            duration: 5000,
             buttons: [
                 {
                     text: 'Close',

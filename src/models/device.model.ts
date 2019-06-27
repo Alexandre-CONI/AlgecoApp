@@ -19,21 +19,21 @@ export class Device {
             mDevice.Id,
             mDevice.Ip,
             mDevice.Name,
-            mDevice.type
+            mDevice.Type
         );
         return device;
     }
 }
 
 export enum DeviceType { 
-    PRESENCE = "presenceSensor",
-    TEMPERATURE = "temperatureSensor",
-    BRIGHT = "brightnessSensor",
-    PRESSURE = "atmosphericPressureSensor",
-    HUMIDITY = "humiditySensor",
-    SOUND_LEVEL = "soundLevelSensor",
-    GPS = "gpsSensor",
-    CO2 = "co2Sensor",
-    LED = "ledDevice",
-    BEEPER = "beeperDevice"
+    PRESENCE = "Presence",
+    TEMPERATURE = "Temperature",
+    BRIGHT = "Brightness",
+    PRESSURE = "AtmosphericPressure",
+    HUMIDITY = "Humidity",
+    SOUND_LEVEL = "SoundLevel",
+    GPS = "GPS",
+    CO2 = "CO2",
+    LED = "Led",
+    BEEPER = "Beeper"
 }
