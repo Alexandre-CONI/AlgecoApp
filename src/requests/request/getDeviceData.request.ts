@@ -71,11 +71,12 @@ export class GetDeviceDataRequest extends AbstractRequest {
 
     deviceData: Array<Metrics>;
 
-    request(): Promise<any> {
-        return this.callServer()
+  request(deviceID: number): Promise<any> {
+      let APIDest: String = "metric/" + deviceID + "/datas";
+      return this.callServer(APIDest, {})
             .then(data => {
               this.deviceData = [];
-              this.responce.forEach(res => {
+              data.forEach(res => {
                 let mMetric: Metrics = Metrics.mapperMetrics(res);
                 this.deviceData.push(mMetric);
               });

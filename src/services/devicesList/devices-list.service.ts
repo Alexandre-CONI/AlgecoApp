@@ -11,7 +11,7 @@ export class DevicesListService {
               private sendCommandToDeviceRequest: SendCommandToDeviceRequest) { }
 
   getDevicesList(): Promise<any> {
-    return this.getDevicesListRequest.request();
+    return this.getDevicesListRequest.request(1);
   }
 
   sendCommand(): Promise<any> {

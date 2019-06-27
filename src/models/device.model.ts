@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 
 export class Device {
     constructor(
+        public ID?: number,
         public deviceID?: string,
         public name?: string,
         public type?: DeviceType
@@ -15,8 +16,9 @@ export class Device {
         let device: Device = null;
 
         device = new Device(
-            mDevice.id,
-            mDevice.name,
+            mDevice.Id,
+            mDevice.Ip,
+            mDevice.Name,
             mDevice.type
         );
         return device;

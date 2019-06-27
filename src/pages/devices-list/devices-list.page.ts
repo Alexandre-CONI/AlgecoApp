@@ -4,6 +4,8 @@ import { DevicesListService } from 'src/services/devicesList/devices-list.servic
 import { abstractPage, ToastType } from '../abstractPage';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { Device, DeviceType } from 'src/models/device.model';
+import { FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-devices-list',
@@ -11,14 +13,22 @@ import { Device, DeviceType } from 'src/models/device.model';
   styleUrls: ['./devices-list.page.scss'],
 })
 export class DevicesListPage extends abstractPage implements OnInit {
+  
+  typeDeviceSelect: FormControl;
+  devicesList: Array<Device>;
 
   constructor(public toastController: ToastController,
               public loadingController: LoadingController,
               private router: Router,
               private devicesListService: DevicesListService)
-  { super(toastController,loadingController) }
+  
+  {
+    super(toastController,loadingController);
+    this.typeDeviceSelect = new FormControl();
 
-  devicesList: Array<Device>;
+  }
+
+
 
   ngOnInit() {
     this.LoadingSpinner().then(() => {

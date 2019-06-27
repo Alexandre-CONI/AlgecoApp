@@ -10,12 +10,13 @@ export class LoginRequest extends AbstractRequest {
     constructor() { super() }
 
     public request() :Promise<any> {
-        return this.callServer()
+      let APIDest: String = "";
+      return this.callServer(APIDest, {})
         .then(data => {
 
         })
         .catch(error => {
-
+          
         });
     }
 }

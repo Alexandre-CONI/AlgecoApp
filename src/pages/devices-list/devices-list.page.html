@@ -5,11 +5,11 @@
       <ion-icon name="log-out"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
   <div *ngIf="devicesList && devicesList.lenght != 0; else no_data_found" >
+    <ion-searchbar></ion-searchbar>
     <ion-card *ngFor="let device of devicesList">
       <ion-item>
         <ion-grid>

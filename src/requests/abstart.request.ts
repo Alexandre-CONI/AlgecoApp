@@ -1,30 +1,29 @@
 import { HTTP } from '@ionic-native/http/ngx';
 import { Injectable } from '@angular/core';
+import { APIMobileEndPoint } from 'src/const/constVar';
 
 @Injectable({
     providedIn: 'root'
 })
 
+
+
 export class AbstractRequest {
     http: HTTP;
+
     constructor() {
         this.http = new HTTP();
      }
 
-    public callServer(): Promise<any> {    
-       return this.http.get('http://ionic.io', {}, {})
+    public callServer(APIDest: String , param: {}): Promise<any> {    
+        console.log(APIMobileEndPoint + APIDest);
+        return this.http.get(APIMobileEndPoint + APIDest, {}, {})
             .then(data => {
-
-                console.log(data.status);
-                console.log(data.data); // data received by server
-                console.log(data.headers);
-                return data;
+                
+                return JSON.parse(data.data);
             })
             .catch(error => {
-
-                console.log(error.status);
-                console.log(error.error); // error message as string
-                console.log(error.headers);
+                console.log(error);
                 return error
             });
     }

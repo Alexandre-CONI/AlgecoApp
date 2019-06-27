@@ -1,0 +1,1 @@
+export const APIMobileEndPoint = "http://10.133.50.13:11080/APImobile/resources/"

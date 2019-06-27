@@ -14,8 +14,8 @@ export class Metrics{
         let metrics: Metrics = null;
 
         metrics = new Metrics (
-            mMetrics.value,
-            new Date(mMetrics.date)
+            mMetrics.Value,
+            new Date(mMetrics.Date)
         );
         return metrics;
     }

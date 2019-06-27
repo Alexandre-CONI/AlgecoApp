@@ -39,11 +39,12 @@ export class GetDevicesListRequest extends AbstractRequest {
     constructor() { super() }
     deviceList: Array<Device>;
 
-    request(): Promise<any> {
-        return this.callServer()
+    request(userID: number = 1): Promise<any> {
+      let APIDest: String = "device/"+ userID + "/user";
+      return this.callServer(APIDest, {})
             .then(data => {
               this.deviceList = [];
-              this.responce.forEach(res => {
+              data.forEach(res => {
                 let mDevice: Device = Device.mapperDevice(res);
                 this.deviceList.push(mDevice);
               });

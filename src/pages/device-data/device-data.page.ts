@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { abstractPage, ToastType } from '../abstractPage';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -68,7 +68,7 @@ export class DeviceDataPage extends abstractPage implements OnInit {
     });
 
     this.LoadingSpinner().then(() => {
-      this.deviceDataService.getDeviceData()
+      this.deviceDataService.getDeviceData(this.device.ID)
         .then((metrics: Array<Metrics>) => {          
           metrics.forEach(metric => {
             

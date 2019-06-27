@@ -8,7 +8,7 @@ export class DeviceDataService {
 
   constructor(private getDeviceDataRequest: GetDeviceDataRequest) { }
 
-  getDeviceData(): Promise<any> {
-    return this.getDeviceDataRequest.request();
+  getDeviceData(ID: number): Promise<any> {
+    return this.getDeviceDataRequest.request(ID);
   }
 }

@@ -10,7 +10,8 @@ export class SendCommandToDeviceRequest extends AbstractRequest  {
     constructor() { super() }
 
     request(): Promise<any> {
-        return this.callServer()
+        let APIDest: String = "";
+        return this.callServer(APIDest, {})
             .then(data => {
 
             })
