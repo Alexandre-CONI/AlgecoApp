@@ -1,46 +1,25 @@
-.deploy: &deploy
-  stage: deploy
-  cache:
-    # speed up packaging by sharing cache amongst multiple deploy jobs of the same commit
-    key: "deploy-$CI_COMMIT_SHORT_SHA"
-    paths:
-      - platforms/
-      - plugins/
-  before_script:
-    # workaround Xcode not downloading updated profiles
-    - rm -fr ~/Library/MobileDevice/Provisioning\ Profiles/
-    - echo "$BUILD_CONFIG" | tr -d '\r' > build.json
-  after_script:
-    - rm build.json
-    - cp $OUTPUT_PATH.$FILE_TYPE $CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG.$FILE_TYPE
-  artifacts:
-    name:
-    paths:
-      - $CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG.$FILE_TYPE
-    expire_in: 7 days
-  tags:
-    - macOS
-  when: manual
+image: beevelop/ionic:latest
 
-deploy:android:debug:
-  <<: *deploy
-  environment:
-    name: production
-  variables:
-    PLATFORM: android
-    FILE_TYPE: apk
-    OUTPUT_PATH: platforms/android/app/build/outputs/apk/debug/app-debug
+stages:
+  - deploy
+
+cache:
+  untracked: true
+  key: "$CI_PROJECT_ID"
+  paths:
+    - node_modules/
+
+build_android:
+  stage: deploy
+  only:
+    - develop
   script:
-    - npm ci
-    - ionic cordova build android --debug
-deploy:android:release:
-  <<: *deploy
-  environment:
-    name: production
-  variables:
-    PLATFORM: android
-    FILE_TYPE: apk
-    OUTPUT_PATH: platforms/android/app/build/outputs/apk/release/app-release
-  script:
-    - npm ci
-    - ionic cordova build android --release
+    - ls
+    - npm i
+    - ionic cordova platform rm android
+    - ionic cordova platform add android
+    - ionic cordova build android
+    - ls ./platforms/android/build/outputs/apk/android*.apk
+  artifacts:
+    paths:
+      - platforms/android/build/outputs/apk
